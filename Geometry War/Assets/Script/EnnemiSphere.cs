@@ -2,21 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemiCube : Ennemi
-{
+public class EnnemiSphere : Ennemi {
     GameObject player;
-    public float speed = 5;
+    public float speed = 3;
     Rigidbody rbd;
     AudioSource audioSource;
     public AudioMusic audioMusic;
-    public GameObject particleSystemDeath;  
+    public GameObject particleSystemDeath;
 
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
         rbd = GetComponent<Rigidbody>();
         audioSource = GameObject.FindGameObjectWithTag("SoundPlayer").GetComponent<AudioSource>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,6 +31,9 @@ public class EnnemiCube : Ennemi
     {
         audioSource.PlayOneShot(audioMusic.soundToPlay);
         Instantiate(particleSystemDeath, gameObject.transform.position, Quaternion.identity);
+        GameObject newSphere1 = Instantiate(gameObject, gameObject.transform.position, Quaternion.identity);
+        GameObject newSphere2 = Instantiate(gameObject, gameObject.transform.position, Quaternion.identity);
         Destroy(gameObject);
+        
     }
 }
